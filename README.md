@@ -72,9 +72,9 @@ df = pd.DataFrame(data, index=labels)
 
 ``` python
 df.info()
-```
-and also
-```python
+
+# and also
+
 df.describe()
 ```
 
@@ -82,9 +82,9 @@ df.describe()
 
 ```python
 df.iloc[:3]
-```
-or
-```python
+
+# or equivalently
+
 df.head(3)
 ```
 
@@ -92,9 +92,9 @@ df.head(3)
 
 ```python
 df.loc[:, ['animal', 'age']]
-```
-or
-```python
+
+# or
+
 df[['animal', 'age']]
 ```
 
