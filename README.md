@@ -215,9 +215,9 @@ df.sum().idxmin()
 
 ```
 len(df) - df.duplicated(keep=False).sum()
-```
-or simply
-```
+
+# or simply...
+
 len(df.drop_duplicates(keep=False))
 ```
 
@@ -227,13 +227,13 @@ len(df.drop_duplicates(keep=False))
 (df.isnull().cumsum(axis=1) == 3).idxmax(axis=1)
 ```
 
-**26.** A DataFrame has a column of groups 'grps' and and column of numbers 'vals'. For each group, find the sum of three greatest values.
+**26.** A DataFrame has a column of groups 'grps' and and column of numbers 'vals'. For each group, find the sum of the three greatest values.
 
 ```python
 df = df.sort_values('vals', ascending=False)
 df.groupby('grp')['vals'].nlargest(3).sum(level=0)
 
-# or using `apply`...
+# or in one line using `apply`...
 
 df.groupby('grp')['vals'].apply(lambda x: pd.Series(x).nlargest(3).sum())
 ```
@@ -250,7 +250,7 @@ df.groupby(pd.cut(df['A'], np.arange(0, 101, 10)))['B'].sum()
 
 ### DataFrames: harder problems 
 
-These are problems that might require a bit of thinking outside the box to solve using pandas/NumPy methods.
+These are problems that might require a bit of thinking outside the box. All are solvable using pandas/NumPy methods.
 
 Difficulty: *hard*
 
