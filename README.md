@@ -197,8 +197,6 @@ Difficulty: *medium*
 
 ```python
 df.loc[df['A'].shift() != df['A']]
-
-See for example: http://stackoverflow.com/questions/19463985/pandas-drop-consecutive-duplicates
 ```
 
 **22.** Given a DataFrame of numeric values, how do you subtract the row mean from each element in the row?
