@@ -213,7 +213,7 @@ df.sum().idxmin()
 
 **24.** Count how many unique rows a DataFrame has (i.e. ignore all rows that have duplicates).
 
-```
+``` python
 len(df) - df.duplicated(keep=False).sum()
 
 # or simply...
