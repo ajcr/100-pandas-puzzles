@@ -276,7 +276,7 @@ df['Y'] = y.groupby((y != y.shift()).cumsum()).cumsum()
 
 ```python
 df.unstack().sort_values()[-3:].index.tolist()
-```
+
 
 # http://stackoverflow.com/questions/14941261/index-and-column-for-the-max-value-in-pandas-dataframe/
 # credit: DSM
