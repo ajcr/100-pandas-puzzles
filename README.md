@@ -116,37 +116,37 @@ df[df['visits'] > 3]
 df[df['age'].isnull()]
 ```
 
-**10.** Select the rows where the animal is a cat *and* the age is less than 3.
+**11.** Select the rows where the animal is a cat *and* the age is less than 3.
 
 ```python
 df[(df['animal'] == 'cat') & (df['age'] < 3)]
 ```
 
-**11.** Select the rows the age is between 2 and 4 (inclusive).
+**12.** Select the rows the age is between 2 and 4 (inclusive).
 
 ```
 df[df['age'].between(2, 4)]
 ```
 
-**12.** Change the age in row 'f' to 1.5.
+**13.** Change the age in row 'f' to 1.5.
 
 ```python
 df.loc['f', 'age'] = 1.5
 ```
 
-**13.** Calculate the sum of all visits.
+**14.** Calculate the sum of all visits.
 
 ```python
 df['visits'].sum()
 ```
 
-**14.** Calculate the mean age for each different animal in `df`.
+**15.** Calculate the mean age for each different animal in `df`.
 
 ```python
 df.groupby('animal')['age'].mean()
 ```
 
-**15.** Append a new row 'k' to `df` with your choice of values for each column. Now delete that row.
+**16.** Append a new row 'k' to `df` with your choice of values for each column. Now delete that row.
 
 ``` python
 df.loc['k'] = [5.5, 'dog', 'no', 2]
@@ -156,31 +156,31 @@ df.loc['k'] = [5.5, 'dog', 'no', 2]
 df = df.drop('k')
 ```
 
-**16.** Count the number of each type of animal in `df`.
+**17.** Count the number of each type of animal in `df`.
 
 ```python
 df['animal'].value_counts()
 ```
 
-**17.** Sort `df` first by the values in the 'age' in decending order, then by the value in the 'visit' column in ascending order.
+**18.** Sort `df` first by the values in the 'age' in decending order, then by the value in the 'visit' column in ascending order.
 
 ``` python
 df.sort_values(by=['age', 'visits'], ascending=[False, True])
 ```
 
-**18.** The 'priority' column contains the values 'yes' and 'no'. Replace this column with a column of boolean values: 'yes' should be `True` and 'no' should be `False`.
+**19.** The 'priority' column contains the values 'yes' and 'no'. Replace this column with a column of boolean values: 'yes' should be `True` and 'no' should be `False`.
 
 ``` python
 df['priority'] = df['priority'].map({'yes': True, 'no': False})
 ```
 
-**19.** In the 'animal' column, change the 'snake' entries to 'python'.
+**20.** In the 'animal' column, change the 'snake' entries to 'python'.
 
 ``` python
 df['animal'] = df['animal'].replace('snake', 'python')
 ```
 
-**20.** For each animal type and each number of visits, find the mean age (hint: use a pivot table).
+**21.** For each animal type and each number of visits, find the mean age (hint: use a pivot table).
 
 ``` python
 df.pivot_table(index='animal', columns='visits', values='age', aggfunc='mean')
@@ -193,25 +193,25 @@ These problems are just beyond the most basic operations on DataFrames. You may 
 Difficulty: *medium*
 
 
-**21.** You have a DataFrame `df` with a column 'A' of integers. How do you filter out rows which contain the same integer as the row immediately above?
+**22.** You have a DataFrame `df` with a column 'A' of integers. How do you filter out rows which contain the same integer as the row immediately above?
 
 ```python
 df.loc[df['A'].shift() != df['A']]
 ```
 
-**22.** Given a DataFrame of numeric values, how do you subtract the row mean from each element in the row?
+**23.** Given a DataFrame of numeric values, how do you subtract the row mean from each element in the row?
 
 ```python
 df.sub(df.mean(axis=1), axis=0)
 ```
 
-**23.** Your DataFrame has 10 columns of real numbers. Which column has the smallest sum?
+**24.** Your DataFrame has 10 columns of real numbers. Which column has the smallest sum?
 
 ```python
 df.sum().idxmin()
 ```
 
-**24.** Count how many unique rows a DataFrame has (i.e. ignore all rows that have duplicates).
+**25.** Count how many unique rows a DataFrame has (i.e. ignore all rows that have duplicates).
 
 ``` python
 len(df) - df.duplicated(keep=False).sum()
@@ -221,13 +221,13 @@ len(df) - df.duplicated(keep=False).sum()
 len(df.drop_duplicates(keep=False))
 ```
 
-**25.** You have a DataFrame that consists of 10 float columns. Exactly 5 entries in each row are NaN values. For each row of the DataFrame, find the column which contains the *third* NaN value.
+**26.** You have a DataFrame that consists of 10 float columns. Exactly 5 entries in each row are NaN values. For each row of the DataFrame, find the column which contains the *third* NaN value.
 
 ```python
 (df.isnull().cumsum(axis=1) == 3).idxmax(axis=1)
 ```
 
-**26.** A DataFrame has a column of groups 'grps' and and column of numbers 'vals'. For each group, find the sum of the three greatest values.
+**27.** A DataFrame has a column of groups 'grps' and and column of numbers 'vals'. For each group, find the sum of the three greatest values.
 
 ```python
 df = df.sort_values('vals', ascending=False)
@@ -238,7 +238,7 @@ df.groupby('grp')['vals'].nlargest(3).sum(level=0)
 df.groupby('grp')['vals'].apply(lambda x: pd.Series(x).nlargest(3).sum())
 ```
 
-**27.** A DataFrame has two integer columns 'A' and 'B'. The values in 'A' are between 1 and 100 (inclusive). For each group of 10 consecutive integers in 'A' (i.e. `(0, 10]`, `(10, 20]`, ...), calculate the sum of the corresponding values in column 'B'.
+**28.** A DataFrame has two integer columns 'A' and 'B'. The values in 'A' are between 1 and 100 (inclusive). For each group of 10 consecutive integers in 'A' (i.e. `(0, 10]`, `(10, 20]`, ...), calculate the sum of the corresponding values in column 'B'.
 
 ```python
 df.groupby(pd.cut(df['A'], np.arange(0, 101, 10)))['B'].sum()
@@ -254,7 +254,7 @@ These are problems that might require a bit of thinking outside the box. All are
 
 Difficulty: *hard*
 
-**28.** In a DataFrame `df` there is an integer column 'X' with the values `[7, 2, 0, 3, 4, 2, 5, 0, 3, 4]`. For each value, count the difference back to the previous zero (or the start of the Series, whichever is closer); these values should therefore be `[1, 2, 0, 1, 2, 3, 4, 0, 1, 2]`. Make this a new column 'Y'.
+**29.** In a DataFrame `df` there is an integer column 'X' with the values `[7, 2, 0, 3, 4, 2, 5, 0, 3, 4]`. For each value, count the difference back to the previous zero (or the start of the Series, whichever is closer); these values should therefore be `[1, 2, 0, 1, 2, 3, 4, 0, 1, 2]`. Make this a new column 'Y'.
 
 ``` python
 izero = np.r_[-1, (df['X'] == 0).nonzero()[0]] # indices of zeros
@@ -272,7 +272,7 @@ y = x != x.shift()
 df['Y'] = y.groupby((y != y.shift()).cumsum()).cumsum()
 ```
 
-**29.** Consider a DataFrame containing rows and columns of purely numerical data. Create a list of the row-column index locations of the 3 largest values.
+**30.** Consider a DataFrame containing rows and columns of purely numerical data. Create a list of the row-column index locations of the 3 largest values.
 
 ```python
 df.unstack().sort_values()[-3:].index.tolist()
@@ -282,7 +282,7 @@ df.unstack().sort_values()[-3:].index.tolist()
 # credit: DSM
 ```
 
-**30.** Given a DataFrame with a column of group IDs, 'grps', and a column of corresponding integer values, 'vals', replace any negative values in 'vals' with the group mean.
+**31.** Given a DataFrame with a column of group IDs, 'grps', and a column of corresponding integer values, 'vals', replace any negative values in 'vals' with the group mean.
 
 ```python
 def replace(group):
@@ -304,26 +304,26 @@ Exercises for creating and manipulating Series with datetime data.
 
 Difficulty: easy/medium
 
-**31.** Create a DatetimeIndex that contains each business day of 2015 and use it to index a Series of random numbers. Let `s` be the variable identifying this Series.
+**32.** Create a DatetimeIndex that contains each business day of 2015 and use it to index a Series of random numbers. Let `s` be the variable identifying this Series.
 
 ``` python
 dti = pd.date_range(start='2015-01-01', end='2015-12-31', freq='B') 
 s = pd.Series(np.random.rand(len(dti)), index=dti)
 ```
 
-**32.** Find the sum of the values in `s` for every Wednesday.
+**33.** Find the sum of the values in `s` for every Wednesday.
 
 ```python
 s[dti.weekday == 2].sum() 
 ```
 
-**33.** For each calendar month in `s`, find the mean of values.
+**34.** For each calendar month in `s`, find the mean of values.
 
 ```python
 s.resample('M', how='mean')
 ```
 
-**34.** For each group of four consecutive calendar months in `s`, find the date on which the highest value occurred.
+**35.** For each group of four consecutive calendar months in `s`, find the date on which the highest value occurred.
 
 ```python
 s.groupby(pd.TimeGrouper('4M')).idxmax()
