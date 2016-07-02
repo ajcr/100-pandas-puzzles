@@ -314,13 +314,13 @@ s = pd.Series(np.random.rand(len(dti)), index=dti)
 **33.** Find the sum of the values in `s` for every Wednesday.
 
 ```python
-s[dti.weekday == 2].sum() 
+s[s.index.weekday == 2].sum() 
 ```
 
 **34.** For each calendar month in `s`, find the mean of values.
 
 ```python
-s.resample('M', how='mean')
+s.resample('M').mean()
 ```
 
 **35.** For each group of four consecutive calendar months in `s`, find the date on which the highest value occurred.
