@@ -336,8 +336,8 @@ The goal is to compute the Series:
 (e.g. the first window of size three for group 'b' has values 3.0, NaN and 3.0 and occurs at row index 5. Instead of being NaN the value in the new column at this row index should be 3.0 (just the two non-NaN values are used to compute the mean (3+3)/2) 
 
 ```python
-g1 = df.groupby(['var1'])['value']              # group values  
-g2 = df.fillna(0).groupby(['var1'])['value']    # fillna, then group values
+g1 = df.groupby(['group'])['value']              # group values  
+g2 = df.fillna(0).groupby(['group'])['value']    # fillna, then group values
 
 s = g2.rolling(3, min_periods=1).sum() / g1.rolling(3, min_periods=1).count() # compute means
 
