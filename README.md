@@ -250,7 +250,7 @@ df.groupby(pd.cut(df['A'], np.arange(0, 101, 10)))['B'].sum()
 
 ### DataFrames: harder problems 
 
-These are problems that might require a bit of thinking outside the box. All are solvable using pandas/NumPy methods.
+These are problems that might require a bit of thinking outside the box. All are solvable using pandas/NumPy methods and avoiding explicit `for` loops..
 
 Difficulty: *hard*
 
@@ -296,35 +296,92 @@ df.groupby(['grps'])['vals'].transform(replace)
 # credit: unutbu
 ```
 
+**32.** Implement a rolling mean over groups with window size 3, which ignores NaN value. For example consider the following DataFrame:
+
+```python
+>>> df = pd.DataFrame({'group': list('aabbabbbabab'),
+                       'value': [1, 2, 3, np.nan, 2, 3, 
+                                 np.nan, 1, 7, 3, np.nan, 8]})
+>>> df
+   group  value
+0      a    1.0
+1      a    2.0
+2      b    3.0
+3      b    NaN
+4      a    2.0
+5      b    3.0
+6      b    NaN
+7      b    1.0
+8      a    7.0
+9      b    3.0
+10     a    NaN
+11     b    8.0
+```
+The goal is to compute the Series:
+
+```
+0     1.000000
+1     1.500000
+2     3.000000
+3     3.000000
+4     1.666667
+5     3.000000
+6     3.000000
+7     2.000000
+8     3.666667
+9     2.000000
+10    4.500000
+11    4.000000
+```
+(e.g. the first window of size three for group 'b' has values 3.0, NaN and 3.0 and occurs at row index 5. Instead of being NaN the value in the new column at this row index should be 3.0 (just the two non-NaN values are used to compute the mean (3+3)/2) 
+
+```python
+g1 = df.groupby(['var1'])['value']              # group values  
+g2 = df.fillna(0).groupby(['var1'])['value']    # fillna, then group values
+
+s = g2.rolling(3, min_periods=1).sum() / g1.rolling(3, min_periods=1).count() # compute means
+
+s.reset_index(level=0, drop=True).sort_index()  # drop/sort index
+
+# http://stackoverflow.com/questions/36988123/pandas-groupby-and-rolling-apply-ignoring-nans/
+# credit: ajcr
+```
+
 ---
 
 ### Series and DatetimeIndex
 
 Exercises for creating and manipulating Series with datetime data.
 
-Difficulty: easy/medium
+Difficulty: *easy/medium*
 
-**32.** Create a DatetimeIndex that contains each business day of 2015 and use it to index a Series of random numbers. Let `s` be the variable identifying this Series.
+**33.** Create a DatetimeIndex that contains each business day of 2015 and use it to index a Series of random numbers. Let `s` be the variable identifying this Series.
 
 ``` python
 dti = pd.date_range(start='2015-01-01', end='2015-12-31', freq='B') 
 s = pd.Series(np.random.rand(len(dti)), index=dti)
 ```
 
-**33.** Find the sum of the values in `s` for every Wednesday.
+**34.** Find the sum of the values in `s` for every Wednesday.
 
 ```python
 s[s.index.weekday == 2].sum() 
 ```
 
-**34.** For each calendar month in `s`, find the mean of values.
+**35.** For each calendar month in `s`, find the mean of values.
 
 ```python
 s.resample('M').mean()
 ```
 
-**35.** For each group of four consecutive calendar months in `s`, find the date on which the highest value occurred.
+**36.** For each group of four consecutive calendar months in `s`, find the date on which the highest value occurred.
 
 ```python
 s.groupby(pd.TimeGrouper('4M')).idxmax()
+```
+
+**37.** Create a DateTimeIndex consisting of the third Thursday in each month for the years 2015 and 2016.
+
+```python
+pd.date_range('2015-01-01', '2016-12-31', freq='WOM-3THU')
 ```
