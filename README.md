@@ -1,6 +1,7 @@
 # 100 pandas puzzles
 
-### Click [here](https://github.com/ajcr/100-pandas-puzzles/blob/master/100-pandas-puzzles.ipynb) for the puzzles!
+### [Puzzles notebook](https://github.com/ajcr/100-pandas-puzzles/blob/master/100-pandas-puzzles.ipynb)
+### [Solutions notebook](https://github.com/ajcr/100-pandas-puzzles/blob/master/100-pandas-puzzles-with-solutions.ipynb)
 
 Inspired by [100 Numpy exerises](https://github.com/rougier/numpy-100), here are 100* short puzzles for testing your knowledge of [pandas'](http://pandas.pydata.org/) power.
 
