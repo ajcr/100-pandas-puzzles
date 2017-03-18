@@ -9,6 +9,8 @@ Since pandas is a large library with many different specialist features and func
 
 The exercises are loosely divided in sections. Each section has a difficulty rating; these ratings are subjective, of course, but should be a seen as a rough guide as to how elaborate a solution is required.
 
+
+
 | Section Name  | Description |  Difficulty |
 | ------------- | ------------- | ------------- |
 | Importing pandas  | Getting started and checking your pandas setup  | Easy |
@@ -21,7 +23,8 @@ The exercises are loosely divided in sections. Each section has a difficulty rat
 | Minesweeper | Generate the numbers for safe squares in a Minesweeper grid | Hard |
 
 
-The official documentation for pandas is very useful and very extensive. Good places get a broader overview of pandas are:
+
+If you feel like rading up on pandas before starting, the official documentation useful and very extensive. Good places get a broader overview of pandas are:
 
 - [10 minutes to pandas](http://pandas.pydata.org/pandas-docs/version/0.17.0/10min.html)
 - [pandas basics](http://pandas.pydata.org/pandas-docs/version/0.17.0/basics.html)
@@ -30,4 +33,4 @@ The official documentation for pandas is very useful and very extensive. Good pl
 
 Good luck solving the puzzles!
 
-\* the list of puzzles is not complete! Pull requests or suggestions for additional exercises, corrections and improvements are welcomed.
+*\* the list of puzzles is not complete! Pull requests or suggestions for additional exercises, corrections and improvements are welcomed.*
