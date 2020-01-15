@@ -58,6 +58,12 @@ jupyter notebook --notebook-dir=100-pandas-puzzles
 
 You should be able to see the notebooks and launch them in your web browser.
 
+## Contributors
+
+This repository has benefitted from numerous contributors, with those who have sent puzzles and fixes listed in [CONTRIBUTORS](https://github.com/ajcr/100-pandas-puzzles/blob/master/CONTRIBUTORS.md).
+
+Thanks to everyone who has raised an issue too.
+
 ## Other links
 
 If you feel like reading up on pandas before starting, the official documentation useful and very extensive. Good places get a broader overview of pandas are:
@@ -69,4 +75,3 @@ If you feel like reading up on pandas before starting, the official documentatio
 - [Guilherme Samora's pandas exercises](https://github.com/guipsamora/pandas_exercises)
 
 There are may other excellent resources and books that are easily searchable and purchaseable.
-
